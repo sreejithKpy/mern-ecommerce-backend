@@ -55,7 +55,7 @@ const getCategories = async (req, res)=>{
         })
     }catch(error){
         res.status(500).json({
-            success: false,
+            success: false,  
             message: error.message
         })
     }
@@ -68,7 +68,7 @@ const getCategoryByID = async (req, res)=>{
                 success: false,
                 message: "Invalid category ID."
             });
-        }
+        } 
         const category = await Category.findOne({
             _id: req.params.id,
             isActive: true

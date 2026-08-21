@@ -17,4 +17,4 @@ router.delete('/:id', authMiddleware, adminMiddleware, deleteCategory)
 
 
 
-module.exports = router  
+module.exports = router      

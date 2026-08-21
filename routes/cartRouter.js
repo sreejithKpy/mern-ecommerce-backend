@@ -9,9 +9,9 @@ router.post('/', authMiddleware, addToCart);
 
 router.get('/', authMiddleware, getCart);
 
-router.put('/update/:productId', authMiddleware, updateCartQuantity);
+router.put('/:productId', authMiddleware, updateCartQuantity);
 
-router.delete('/remove/:productId', authMiddleware, removeFromCart);
+router.delete('/:productId', authMiddleware, removeFromCart);
 
 router.delete('/clear', authMiddleware, clearCart)
 

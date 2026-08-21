@@ -99,7 +99,8 @@ const updateAddress = async (req, res)=>{
         city,
         state,
         postalCode,
-        country
+        country,
+        isDefault
     } = req.body;
 
     try{
@@ -142,6 +143,26 @@ const updateAddress = async (req, res)=>{
         }
         if(country){
             address.country = country
+        }
+        if(isDefault === true){
+            await Address.updateMany(
+                {
+                    user: userId,
+                    _id: { $ne: id}
+                },
+                {
+                    isDefault: false
+                }
+            );
+
+            address.isDefault = true
+        }
+
+        if(isDefault === false && address.isDefault === true){
+            return res.status(400).json({
+                success: false,
+                message: "At least one default address is required."
+            })
         }
 
         await address.save()

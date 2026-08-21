@@ -133,12 +133,12 @@ const getProduct = async (req, res) => {
             if(Number.isNaN(min)){
                 return res.status(400).json({
                     success: false,
-                    success: "Invalid minimum price."
+                    message: "Invalid minimum price."
                 })
             }
 
 
-            filter.price.$gte = min;
+            filter.price.$gte = min; 
         }
 
         if (maxPrice) {
@@ -255,7 +255,7 @@ const getProductById = async (req, res) => {
 
     if (!product) {
       return res.status(404).json({
-        success: false,
+        success: false, 
         message: "Product Not Found",
       });
     }
@@ -279,7 +279,7 @@ const updateProduct = async (req, res) => {
     if (name !== undefined) {
       updates.name = name;
     }
-    if (description) {
+    if (description) { 
       updates.description = description;
     }
 
@@ -323,7 +323,7 @@ const updateProduct = async (req, res) => {
       });
 
       if (!existingCategory) {
-        return res.status(404).json({
+        return res.status(404).json({ 
           success: false,
           message: "Category not found.",
         });

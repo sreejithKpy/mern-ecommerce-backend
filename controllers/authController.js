@@ -84,6 +84,13 @@ const loginUser = async (req, res)=>{
             })
         }
 
+        if(!user.isActive){
+            return res.status(403).json({
+                success: false,
+                message: "Your account has been deactivated."
+            })
+        }
+
         //jwt token generate
         const token = jwt.sign(
             {
@@ -96,10 +103,16 @@ const loginUser = async (req, res)=>{
             }
         )
 
+        // remove password before sending response
+
+        const userData = user.toObject();
+        delete userData.password
+
         res.status(200).json({
             success: true,
             message: "Login successful.",
-            token
+            token,
+            user: userData
         })
 
     }catch(error){
