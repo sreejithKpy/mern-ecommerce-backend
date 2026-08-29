@@ -7,14 +7,16 @@ const authRouter = require('./routes/authRouter')
 const cartRouter = require('./routes/cartRouter')
 const addressRouter = require('./routes/addressRouter');
 const orderRouter = require('./routes/orderRouter');
-const adminRouter = require('./routes/adminRouter')
+const adminRouter = require('./routes/adminRouter');
+
+const wishlistRouter = require('./routes/wishlistRouter');
 
 const cors = require('cors')
 const app = express()
 
 app.use(
     cors({
-        origin: "http://localhost:5173",
+        origin: process.env.CLIENT_URL,
         credentials: true
     })
 )
@@ -34,10 +36,14 @@ app.use('/products', productRouter);
 app.use('/cart', cartRouter);
 
 app.use('/address', addressRouter);
-
+ 
 app.use('/orders', orderRouter);
 
-app.use('/admin', adminRouter)
+app.use('/admin', adminRouter);
+
+app.use('/wishlist', wishlistRouter);
+
+
 
 
 app.listen(process.env.PORT, ()=>{

@@ -288,8 +288,8 @@ const updateOrderStatus = async (req, res) => {
     //satus flow
     const statusFlow = {
       Pending: ["Confirmed", "Cancelled"],
-      Confiremd: ["Shipped", "Cancelled"],
-      Shipped: ["Devlivered", "Cancelled"]
+      Confirmed: ["Shipped", "Cancelled"],
+      Shipped: ["Delivered", "Cancelled"]
     }
 
     const allowedNextStatuses = statusFlow[order.orderStatus] || [];
