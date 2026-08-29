@@ -46,7 +46,7 @@ app.use('/wishlist', wishlistRouter);
 
 
 
-app.listen(process.env.PORT, ()=>{
+app.listen(process.env.PORT, "0.0.0.0", ()=>{
     console.log(`Server Running PORT ${process.env.PORT}`)
 })
   
