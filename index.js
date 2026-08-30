@@ -21,7 +21,13 @@ const allowedOrigins = [
 
 app.use(
     cors({
-        origin: allowedOrigins,
+        origin: function (origin, callback) {
+            if(!origin || allowedOrigins.includes(origin)){
+                callback(null, true)
+            }else{
+                callback(new Error("Not allowed by CORS"))
+            }
+        },
         credentials: true
     })
 )
@@ -49,6 +55,9 @@ app.use('/admin', adminRouter);
 app.use('/wishlist', wishlistRouter);
 
 
+app.listen(process.env.PORT, "0.0.0.0", () => {
+  console.log(`Server Running PORT ${process.env.PORT}`);
+});
 
 
 
